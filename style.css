@@ -1,0 +1,90 @@
+/* normalize.css ya está incluido por separado */
+
+/* Variables globales */
+:root {
+    --color-principal: #2c3e50;
+    --color-secundario: #2980b9;
+    --color-fondo: #f5f7fa;
+    --color-texto: #333;
+    --color-boton-fondo: var(--color-secundario);
+    --color-boton-texto: #fff;
+
+    --fuente-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    --espaciado-base: 1rem;
+    --radio-borde: 0.25rem;
+}
+
+/* Reset y base */
+body {
+    font-family: var(--fuente-base);
+    font-size: 1rem;
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+}
+
+h1,
+h2,
+h3 {
+    margin: 0 0 1rem 0;
+    font-weight: 600;
+    color: var(--color-principal);
+}
+
+/* ----------------------------------- */
+/* Bloque mainMenu (pantalla bienvenida) */
+
+.mainMenu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* pantalla completa */
+    background-color: var(--color-fondo);
+    padding: var(--espaciado-base);
+    text-align: center;
+}
+
+.mainMenu__h1 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+}
+
+.mainMenu__boton {
+    background-color: var(--color-boton-fondo);
+    color: var(--color-boton-texto);
+    border:var(--color-boton-texto) ;
+    padding: 0.75rem 2rem;
+    font-size: 1.25rem;
+    border-radius: var(--radio-borde);
+    cursor: pointer;
+    transition: background-color 0.75s ease, padding 0.75s ease;
+    position: relative;
+}
+
+.mainMenu__boton:hover {
+    background-color: #1c5980;
+    padding: 1rem 2.25rem;
+}
+
+/* ----------------------------------- */
+/* Bloque aplicacion (pantalla principal) */
+/*     
+.aplicacion {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: var(--espaciado-base);
+    background: #fff;
+    border-radius: var(--radio-borde);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.aplicacion__h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+} */

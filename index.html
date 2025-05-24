@@ -1,12 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="UTF-8" />
-        <title>Escalada Óptima</title>
-        <link rel="stylesheet" href="style.css" />
-    </head>
-    <body>
-        <!-- Tu contenido aquí -->
-        <script src="script.js" defer></script>
-    </body>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Prueba Técnica - Escalada Óptima</title>
+    <link rel="stylesheet" href="normalize.css" />
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Pantalla de bienvenida -->
+    <section id="inicio" class="mainMenu">
+        <h1 class="mainMenu__h1">Bienvenido al Optimizer de Escalada</h1>
+        <button class="mainMenu__boton" id="btn-iniciar">Iniciar</button>
+    </section>
+
+    <!-- Pantalla principal de la aplicación -->
+    <section id="app" class="aplicacion" style="display: none">
+        <h2 class="aplicacion__h2">Configura tu escalada</h2>
+
+        <form id="formulario" class="aplicacion__form">
+            <div class="formulario__grupo">
+                <label for="calorias-min" class="form__label">Calorías mínimas</label>
+                <input type="number" id="calorias-min" class="form__input" min="0" required />
+            </div>
+
+            <div class="formulario__grupo">
+                <label for="peso-max" class="form__label">Peso máximo (kg)</label>
+                <input type="number" id="peso-max" class="form__input" min="0" required />
+            </div>
+
+            <div class="formulario__grupo">
+                <label class="form__label">Elementos para escalar</label>
+                <div id="lista-elementos" class="form__lista">
+                    <!-- Aquí se agregarán dinámicamente los inputs para peso y calorías -->
+                </div>
+                <button type="button" id="btn-agregar-elemento" class="form__boton">
+                    Agregar elemento
+                </button>
+            </div>
+
+            <button type="submit" class="form__boton form__boton--principal">
+                Calcular combinación óptima
+            </button>
+        </form>
+
+        <section id="resultado" class="app__resultado" style="display: none">
+            <h3>Resultado:</h3>
+            <div id="resultado-contenido"></div>
+        </section>
+    </section>
+
+    <script src="script.js" defer></script>
+</body>
+
 </html>
