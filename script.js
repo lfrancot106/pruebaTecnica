@@ -96,36 +96,48 @@ document.addEventListener("DOMContentLoaded", () => {
 // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Función para calcular combinación óptima (placeholder, luego la mejoramos)
     const calcularCombinacionOptima = (minCalorias, maxPeso, elementos) => {
-    const n = elementos.length;
+    const obtenerCombinaciones = (arr) => {
+        const resultados = [];
+
+        const generar = (actual, resto) => {
+            if (resto.length === 0) {
+                if (actual.length > 0) {
+                    resultados.push(actual);
+                }
+                return;
+            }
+
+            // Incluimos el primer elemento del resto
+            generar([...actual, resto[0]], resto.slice(1));
+            // No lo incluimos
+            generar(actual, resto.slice(1));
+        };
+
+        generar([], arr);
+        return resultados;
+    };
+
+    const todasCombinaciones = obtenerCombinaciones(elementos);
     let mejorCombinacion = null;
     let mejorPeso = Infinity;
 
-    // Usamos combinaciones binarias (2^n posibilidades)
-    for (let i = 1; i < (1 << n); i++) {
-        let subset = [];
-        let totalPeso = 0;
-        let totalCalorias = 0;
+    for (const combinacion of todasCombinaciones) {
+        const pesoTotal = combinacion.reduce((sum, el) => sum + el.peso, 0);
+        const caloriasTotal = combinacion.reduce((sum, el) => sum + el.calorias, 0);
 
-        for (let j = 0; j < n; j++) {
-// sourcery skip: possible-incorrect-bitwise-operator
-            if (i & (1 << j)) {
-                totalPeso += elementos[j].peso;
-                totalCalorias += elementos[j].calorias;
-                subset.push(elementos[j]);
-            }
+        if (
+            caloriasTotal >= minCalorias &&
+            pesoTotal <= maxPeso &&
+            pesoTotal < mejorPeso
+        ) {
+            mejorCombinacion = combinacion;
+            mejorPeso = pesoTotal;
         }
-
-        if (totalCalorias >= minCalorias &&
-    totalPeso <= maxPeso &&
-    totalPeso < mejorPeso) {
-    mejorPeso = totalPeso;
-    mejorCombinacion = subset;
-}
-
     }
 
     return mejorCombinacion;
 };
+
 
 // ________________FIN________________
 
