@@ -93,19 +93,42 @@ document.addEventListener("DOMContentLoaded", () => {
         resultadoContenido.textContent = mensaje;
         resultadoSection.style.display = "block";
     };
-
+// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     // Función para calcular combinación óptima (placeholder, luego la mejoramos)
     const calcularCombinacionOptima = (minCalorias, maxPeso, elementos) => {
-        // Por ahora solo retornamos todos si cumplen
-        let pesoTotal = elementos.reduce((acc, el) => acc + el.peso, 0);
-        let caloriasTotal = elementos.reduce((acc, el) => acc + el.calorias, 0);
+    const n = elementos.length;
+    let mejorCombinacion = null;
+    let mejorPeso = Infinity;
 
-        if (caloriasTotal >= minCalorias && pesoTotal <= maxPeso) {
-            return elementos;
-        } else {
-            return null;
+    // Usamos combinaciones binarias (2^n posibilidades)
+    for (let i = 1; i < (1 << n); i++) {
+        let subset = [];
+        let totalPeso = 0;
+        let totalCalorias = 0;
+
+        for (let j = 0; j < n; j++) {
+// sourcery skip: possible-incorrect-bitwise-operator
+            if (i & (1 << j)) {
+                totalPeso += elementos[j].peso;
+                totalCalorias += elementos[j].calorias;
+                subset.push(elementos[j]);
+            }
         }
-    };
+
+        if (totalCalorias >= minCalorias &&
+    totalPeso <= maxPeso &&
+    totalPeso < mejorPeso) {
+    mejorPeso = totalPeso;
+    mejorCombinacion = subset;
+}
+
+    }
+
+    return mejorCombinacion;
+};
+
+// ________________FIN________________
+
 
     formulario.addEventListener("submit", (e) => {
         e.preventDefault();
