@@ -57,13 +57,12 @@ h3 {
 .mainMenu__boton {
     background-color: var(--color-boton-fondo);
     color: var(--color-boton-texto);
-    border:var(--color-boton-texto) ;
+    border: none;
     padding: 0.75rem 2rem;
     font-size: 1.25rem;
     border-radius: var(--radio-borde);
     cursor: pointer;
-    transition: background-color 0.75s ease, padding 0.75s ease;
-    position: relative;
+    transition: background-color 0.3s ease;
 }
 
 .mainMenu__boton:hover {
@@ -73,7 +72,7 @@ h3 {
 
 /* ----------------------------------- */
 /* Bloque aplicacion (pantalla principal) */
-/*     
+
 .aplicacion {
     max-width: 600px;
     margin: 2rem auto;
@@ -87,4 +86,116 @@ h3 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
     text-align: center;
-} */
+}
+
+/* ----------------------------------- */
+/* Bloque formulario */
+
+.aplicacion__form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.formulario__grupo {
+    display: flex;
+    flex-direction: column;
+}
+
+.form__label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.form__input {
+    padding: 0.5rem 0.75rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: var(--radio-borde);
+    transition: border-color 0.3s ease;
+}
+
+.form__input:focus {
+    border-color: var(--color-secundario);
+    outline: none;
+}
+
+/* Lista de elementos - inputs dinámicos */
+
+.form__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: var(--radio-borde);
+    background-color: #fafafa;
+}
+
+/* Botones */
+
+.form__boton {
+    background-color: var(--color-boton-fondo);
+    color: var(--color-boton-texto);
+    border: none;
+    padding: 0.6rem 1.5rem;
+    font-size: 1rem;
+    border-radius: var(--radio-borde);
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.3s ease;
+}
+
+.form__boton:hover,
+.form__boton:focus {
+    background-color: #1c5980;
+    outline: none;
+}
+
+/* Botón principal del formulario (submit) */
+
+.form__boton--principal {
+    align-self: center;
+    font-weight: 700;
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+    margin-top: 1.5rem;
+}
+
+/* ----------------------------------- */
+/* Resultados */
+
+.app__resultado {
+    margin-top: 2rem;
+    padding: var(--espaciado-base);
+    background-color: #eef6fb;
+    border-radius: var(--radio-borde);
+    border: 1px solid var(--color-secundario);
+}
+
+#resultado-contenido {
+    font-size: 1rem;
+    color: var(--color-principal);
+    white-space: pre-wrap;
+    /* para saltos de línea si los hay */
+}
+
+/* ----------------------------------- */
+/* Responsive básico */
+
+@media (max-width: 480px) {
+    .aplicacion {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .mainMenu__h1 {
+        font-size: 2rem;
+    }
+
+    .aplicacion__h2 {
+        font-size: 1.5rem;
+    }
+}
