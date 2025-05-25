@@ -132,7 +132,21 @@ h3 {
     border: 1px solid #ddd;
     border-radius: var(--radio-borde);
     background-color: #fafafa;
+    
 }
+
+.form__lista-item {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding-bottom: 8px ;        border-bottom: black 2px solid;
+
+}
+
+.form__lista-item input:nth-child(3) {
+    flex-basis: 100%;
+}
+
 
 /* Botones */
 

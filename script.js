@@ -25,6 +25,19 @@ document.addEventListener("DOMContentLoaded", () => {
         const contenedor = document.createElement("div");
         contenedor.className = "form__lista-item";
 
+        // Input nombre
+        const labelNombre = document.createElement("label");
+        labelNombre.className = "form__lista-item-label";
+        labelNombre.setAttribute("for", `nombre-${id}`);
+        labelNombre.textContent = "Nombre:";
+
+        const inputNombre = document.createElement("input");
+        inputNombre.type = "text";
+        inputNombre.required = true;
+        inputNombre.className = "form__lista-item-input";
+        inputNombre.id = `nombre-${id}`;
+        inputNombre.name = `nombre-${id}`;
+
         // Input peso
         const labelPeso = document.createElement("label");
         labelPeso.className = "form__lista-item-label";
@@ -65,11 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Agregar elementos al contenedor
+        contenedor.appendChild(labelNombre);
+        contenedor.appendChild(inputNombre);
         contenedor.appendChild(labelPeso);
         contenedor.appendChild(inputPeso);
         contenedor.appendChild(labelCalorias);
         contenedor.appendChild(inputCalorias);
         contenedor.appendChild(btnBorrar);
+
 
         return contenedor;
     };
@@ -93,54 +109,55 @@ document.addEventListener("DOMContentLoaded", () => {
         resultadoContenido.textContent = mensaje;
         resultadoSection.style.display = "block";
     };
-// ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    // Función para calcular combinación óptima (placeholder, luego la mejoramos)
+    // ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+    // Función para calcular combinación óptima
     const calcularCombinacionOptima = (minCalorias, maxPeso, elementos) => {
-    const obtenerCombinaciones = (arr) => {
-        const resultados = [];
+        const obtenerCombinaciones = (arr) => {
+            const resultados = [];
 
-        const generar = (actual, resto) => {
-            if (resto.length === 0) {
-                if (actual.length > 0) {
-                    resultados.push(actual);
+            const generar = (actual, resto) => {
+                if (resto.length === 0) {
+                    if (actual.length > 0) {
+                        resultados.push(actual);
+                    }
+                    return;
                 }
-                return;
-            }
 
-            // Incluimos el primer elemento del resto
-            generar([...actual, resto[0]], resto.slice(1));
-            // No lo incluimos
-            generar(actual, resto.slice(1));
+                // Incluimos el primer elemento del resto
+                generar([...actual, resto[0]], resto.slice(1));
+                // No lo incluimos
+                generar(actual, resto.slice(1));
+            };
+
+            generar([], arr);
+            return resultados;
         };
 
-        generar([], arr);
-        return resultados;
+        const todasCombinaciones = obtenerCombinaciones(elementos);
+        let mejorCombinacion = null;
+        let mejorPeso = Infinity;
+
+        for (const combinacion of todasCombinaciones) {
+            const pesoTotal = combinacion.reduce((sum, el) => sum + el.peso, 0);
+            const caloriasTotal = combinacion.reduce(
+                (sum, el) => sum + el.calorias,
+                0
+            );
+
+            if (
+                caloriasTotal >= minCalorias &&
+                pesoTotal <= maxPeso &&
+                pesoTotal < mejorPeso
+            ) {
+                mejorCombinacion = combinacion;
+                mejorPeso = pesoTotal;
+            }
+        }
+
+        return mejorCombinacion;
     };
 
-    const todasCombinaciones = obtenerCombinaciones(elementos);
-    let mejorCombinacion = null;
-    let mejorPeso = Infinity;
-
-    for (const combinacion of todasCombinaciones) {
-        const pesoTotal = combinacion.reduce((sum, el) => sum + el.peso, 0);
-        const caloriasTotal = combinacion.reduce((sum, el) => sum + el.calorias, 0);
-
-        if (
-            caloriasTotal >= minCalorias &&
-            pesoTotal <= maxPeso &&
-            pesoTotal < mejorPeso
-        ) {
-            mejorCombinacion = combinacion;
-            mejorPeso = pesoTotal;
-        }
-    }
-
-    return mejorCombinacion;
-};
-
-
-// ________________FIN________________
-
+    // ________________FIN________________
 
     formulario.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -161,20 +178,24 @@ document.addEventListener("DOMContentLoaded", () => {
         // Recolectar datos de cada elemento
         const listaItems = listaElementos.querySelectorAll(".form__lista-item");
         for (let item of listaItems) {
+            const nombreInput = item.querySelector('input[id^="nombre-"]');
+            const nombre = nombreInput.value.trim();
+
             const pesoInput = item.querySelector('input[id^="peso-"]');
             const caloriasInput = item.querySelector('input[id^="calorias-"]');
 
             const peso = Number(pesoInput.value);
             const calorias = Number(caloriasInput.value);
 
-            if (isNaN(peso) || isNaN(calorias) || peso < 0 || calorias < 0) {
+            if (!nombre || isNaN(peso) || isNaN(calorias) || peso < 0 || calorias < 0) {
                 mostrarError(
-                    "Por favor, completa todos los campos de peso y calorías correctamente."
+                    "Por favor, completa todos los campos correctamente."
                 );
                 return;
             }
 
-            elementos.push({ peso, calorias });
+            elementos.push({ nombre, peso, calorias });
+
         }
 
         if (elementos.length === 0) {
@@ -199,9 +220,10 @@ document.addEventListener("DOMContentLoaded", () => {
         resultadoSection.style.display = "block";
         let html = `<ul>`;
         resultado.forEach((el, i) => {
-            html += `<li>Elemento ${i + 1}: Peso ${el.peso} kg, Calorías ${el.calorias}</li>`;
+            html += `<li>${el.nombre}: ${el.peso} kg, ${el.calorias} cal</li>`;
         });
         html += `</ul>`;
+
 
         resultadoContenido.innerHTML = html;
     });
