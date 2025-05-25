@@ -2,57 +2,62 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Prueba Técnica - Escalada Óptima</title>
-    <link rel="stylesheet" href="normalize.css" />
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" /> <!-- Para que las letras y símbolos salgan bien -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" /> <!-- Que se vea bien en móviles -->
+    <title>Prueba Técnica - Escalada Óptima</title> <!-- Nombre de la pestaña -->
+    <link rel="stylesheet" href="normalize.css" /> <!-- Normaliza estilos entre navegadores -->
+    <link rel="stylesheet" href="style.css" /> <!-- Mis estilos personalizados -->
 </head>
 
 <body>
-    <!-- Pantalla de bienvenida -->
+    <!-- Pantalla que se ve al entrar, con un mensaje y botón para empezar -->
     <section id="inicio" class="mainMenu">
         <h1 class="mainMenu__h1">Bienvenido al Optimizer de Escalada</h1>
-        <button class="mainMenu__boton" id="btn-iniciar">Iniciar</button>
+        <button class="mainMenu__boton" id="btn-iniciar">Iniciar</button> <!-- Empieza la app -->
     </section>
 
-    <!-- Pantalla principal de la aplicación -->
+    <!-- Esta parte está oculta al principio, acá va el formulario -->
     <section id="app" class="aplicacion" style="display: none">
         <h2 class="aplicacion__h2">Configura tu escalada</h2>
 
         <form id="formulario" class="aplicacion__form">
+            <!-- Aquí se pone cuántas calorías necesito mínimo -->
             <div class="formulario__grupo">
                 <label for="calorias-min" class="form__label">Calorías mínimas</label>
                 <input type="number" id="calorias-min" class="form__input" min="0" required />
             </div>
 
+            <!-- Aquí pongo el peso máximo que puedo cargar -->
             <div class="formulario__grupo">
                 <label for="peso-max" class="form__label">Peso máximo (kg)</label>
                 <input type="number" id="peso-max" class="form__input" min="0" required />
             </div>
 
+            <!-- Lista donde voy a agregar los elementos con su peso y calorías -->
             <div class="formulario__grupo">
                 <label class="form__label">Elementos para escalar</label>
                 <div id="lista-elementos" class="form__lista">
-                    <!-- Aquí se agregarán dinámicamente los inputs para peso y calorías -->
+                    <!-- Los inputs para cada elemento se crean aquí -->
                 </div>
                 <button type="button" id="btn-agregar-elemento" class="form__boton">
-                    Agregar elemento
+                    Agregar elemento <!-- Para añadir más cosas -->
                 </button>
             </div>
 
+            <!-- Botón para enviar y que calcule la mejor combinación -->
             <button type="submit" class="form__boton form__boton--principal">
                 Calcular combinación óptima
             </button>
         </form>
 
+        <!-- Aquí va a aparecer el resultado después de calcular -->
         <section id="resultado" class="app__resultado" style="display: none">
             <h3>Resultado:</h3>
-            <div id="resultado-contenido"></div>
+            <div id="resultado-contenido"></div> <!-- Resultado final -->
         </section>
     </section>
 
-    <script src="script.js" defer></script>
+    <script src="script.js" defer></script> <!-- Mi código JS que controla todo -->
 </body>
 
 </html>

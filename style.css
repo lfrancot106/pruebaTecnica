@@ -1,215 +1,240 @@
 /* normalize.css ya está incluido por separado */
+/* Esto ayuda a que los estilos básicos de los navegadores sean más parecidos */
 
 /* Variables globales */
+/* Aquí definimos colores, fuentes y tamaños que usaremos en todo el sitio */
 :root {
-    --color-principal: #2c3e50;
-    --color-secundario: #2980b9;
-    --color-fondo: #f5f7fa;
-    --color-texto: #333;
-    --color-boton-fondo: var(--color-secundario);
-    --color-boton-texto: #fff;
+    --color-principal: #2c3e50;       /* Color azul oscuro para títulos y textos importantes */
+    --color-secundario: #2980b9;      /* Azul más brillante para botones y resaltados */
+    --color-fondo: #f5f7fa;           /* Color de fondo claro para la página */
+    --color-texto: #333;              /* Color gris oscuro para el texto normal */
+    --color-boton-fondo: var(--color-secundario);  /* Fondo de los botones igual al color secundario */
+    --color-boton-texto: #fff;        /* Texto blanco para los botones */
 
-    --fuente-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    --fuente-base: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fuente principal del proyecto */
 
-    --espaciado-base: 1rem;
-    --radio-borde: 0.25rem;
+    --espaciado-base: 1rem;           /* Espacio base para márgenes y paddings */
+    --radio-borde: 0.25rem;           /* Radio de borde para esquinas redondeadas */
 }
 
 /* Reset y base */
+/* Definimos estilos base para todo el documento para que se vea uniforme */
 body {
-    font-family: var(--fuente-base);
-    font-size: 1rem;
-    background-color: var(--color-fondo);
-    color: var(--color-texto);
-    margin: 0;
-    padding: 0;
-    line-height: 1.5;
+    font-family: var(--fuente-base);  /* Usamos la fuente principal */
+    font-size: 1rem;                  /* Tamaño de texto base */
+    background-color: var(--color-fondo); /* Color de fondo claro */
+    color: var(--color-texto);        /* Color principal del texto */
+    margin: 0;                       /* Quitamos margen por defecto */
+    padding: 0;                      /* Quitamos padding por defecto */
+    line-height: 1.5;                /* Altura de línea para mejor lectura */
 }
 
+/* Estilos para encabezados */
 h1,
 h2,
 h3 {
-    margin: 0 0 1rem 0;
-    font-weight: 600;
-    color: var(--color-principal);
+    margin: 0 0 1rem 0;              /* Margen abajo para separar del siguiente elemento */
+    font-weight: 600;                /* Peso de letra medio/alto para que resalten */
+    color: var(--color-principal);  /* Color azul oscuro para destacar */
 }
 
 /* ----------------------------------- */
 /* Bloque mainMenu (pantalla bienvenida) */
+/* Aquí definimos estilos para la pantalla inicial que ve el usuario */
 
+/* Contenedor principal de la pantalla de bienvenida */
 .mainMenu {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    /* pantalla completa */
-    background-color: var(--color-fondo);
-    padding: var(--espaciado-base);
-    text-align: center;
+    display: flex;                   /* Usamos flexbox para centrar contenido */
+    flex-direction: column;          /* Apilamos elementos en columna */
+    justify-content: center;         /* Centramos verticalmente */
+    align-items: center;             /* Centramos horizontalmente */
+    height: 100vh;                   /* Ocupa toda la altura de la ventana */
+    background-color: var(--color-fondo); /* Fondo claro */
+    padding: var(--espaciado-base); /* Espaciado alrededor */
+    text-align: center;              /* Texto centrado */
 }
 
+/* Estilo para el título principal en mainMenu */
 .mainMenu__h1 {
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
+    font-size: 2.5rem;               /* Tamaño grande para que llame la atención */
+    margin-bottom: 2rem;             /* Espacio debajo para separar del botón */
 }
 
+/* Botón principal en mainMenu */
 .mainMenu__boton {
-    background-color: var(--color-boton-fondo);
-    color: var(--color-boton-texto);
-    border: none;
-    padding: 0.75rem 2rem;
-    font-size: 1.25rem;
-    border-radius: var(--radio-borde);
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+    background-color: var(--color-boton-fondo); /* Fondo azul */
+    color: var(--color-boton-texto);             /* Texto blanco */
+    border: none;                    /* Sin borde */
+    padding: 0.75rem 2rem;           /* Espacio interno para que sea cómodo */
+    font-size: 1.25rem;              /* Texto un poco más grande */
+    border-radius: var(--radio-borde); /* Esquinas redondeadas */
+    cursor: pointer;                 /* Cambia cursor para indicar que es clickeable */
+    transition: background-color 0.3s ease; /* Suaviza el cambio de color al pasar el mouse */
 }
 
+/* Estado hover para el botón: cambia el color y aumenta un poco el padding */
 .mainMenu__boton:hover {
-    background-color: #1c5980;
-    padding: 1rem 2.25rem;
+    background-color: #1c5980;       /* Azul más oscuro al pasar mouse */
+    padding: 1rem 2.25rem;           /* Un poco más de espacio para feedback visual */
 }
 
 /* ----------------------------------- */
 /* Bloque aplicacion (pantalla principal) */
 
+/* Contenedor principal de la aplicación */
+/* Aquí se limita el ancho, se centra en la página y se le da un estilo limpio */
 .aplicacion {
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: var(--espaciado-base);
-    background: #fff;
-    border-radius: var(--radio-borde);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 600px;               /* Ancho máximo para que no sea muy ancho en pantallas grandes */
+    margin: 2rem auto;              /* Margen arriba y abajo, centrado horizontalmente */
+    padding: var(--espaciado-base); /* Espacio interno alrededor */
+    background: #fff;               /* Fondo blanco para destacar contenido */
+    border-radius: var(--radio-borde); /* Bordes redondeados suaves */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra tenue para dar profundidad */
 }
 
+/* Título dentro de la aplicación */
 .aplicacion__h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
+    font-size: 2rem;                /* Tamaño grande para que resalte */
+    margin-bottom: 1.5rem;          /* Espacio debajo para separar de otros elementos */
+    text-align: center;             /* Centrado del texto */
 }
 
 /* ----------------------------------- */
 /* Bloque formulario */
+/* Estilos para el formulario donde se ingresan datos */
 
+/* Formulario como flexbox vertical con espacio entre elementos */
 .aplicacion__form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.25rem;
+    display: flex;                  /* Usamos flex para organizar los campos */
+    flex-direction: column;         /* Apilamos verticalmente */
+    gap: 1.25rem;                   /* Separación entre los campos */
 }
 
+/* Grupo dentro del formulario */
+/* Para agrupar etiquetas e inputs en columna */
 .formulario__grupo {
     display: flex;
     flex-direction: column;
 }
 
+/* Etiquetas del formulario */
 .form__label {
-    font-weight: 600;
-    margin-bottom: 0.5rem;
+    font-weight: 600;               /* Negrita para que destaque la etiqueta */
+    margin-bottom: 0.5rem;          /* Espacio debajo para separar del input */
 }
 
+/* Inputs del formulario */
 .form__input {
-    padding: 0.5rem 0.75rem;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: var(--radio-borde);
-    transition: border-color 0.3s ease;
+    padding: 0.5rem 0.75rem;       /* Espacio interno para mejor usabilidad */
+    font-size: 1rem;                /* Tamaño legible */
+    border: 1px solid #ccc;         /* Borde gris claro */
+    border-radius: var(--radio-borde); /* Bordes redondeados */
+    transition: border-color 0.3s ease; /* Transición suave para el borde cuando cambia */
 }
 
+/* Estilo al enfocar el input */
 .form__input:focus {
-    border-color: var(--color-secundario);
-    outline: none;
-}
-
-/* Lista de elementos - inputs dinámicos */
-
-.form__lista {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
-    max-height: 200px;
-    overflow-y: auto;
-    padding-right: 0.5rem;
-    border: 1px solid #ddd;
-    border-radius: var(--radio-borde);
-    background-color: #fafafa;
-    
-}
-
-.form__lista-item {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding-bottom: 8px ;        border-bottom: black 2px solid;
-
-}
-
-.form__lista-item input:nth-child(3) {
-    flex-basis: 100%;
-}
-
-
-/* Botones */
-
-.form__boton {
-    background-color: var(--color-boton-fondo);
-    color: var(--color-boton-texto);
-    border: none;
-    padding: 0.6rem 1.5rem;
-    font-size: 1rem;
-    border-radius: var(--radio-borde);
-    cursor: pointer;
-    align-self: flex-start;
-    transition: background-color 0.3s ease;
-}
-
-.form__boton:hover,
-.form__boton:focus {
-    background-color: #1c5980;
-    outline: none;
-}
-
-/* Botón principal del formulario (submit) */
-
-.form__boton--principal {
-    align-self: center;
-    font-weight: 700;
-    font-size: 1.1rem;
-    padding: 0.75rem 2rem;
-    margin-top: 1.5rem;
+    border-color: var(--color-secundario); /* Cambia borde a azul para indicar foco */
+    outline: none;                  /* Quita el contorno por defecto */
 }
 
 /* ----------------------------------- */
-/* Resultados */
+/* Lista de elementos - inputs dinámicos */
+/* Contenedor para la lista de inputs que se pueden agregar o eliminar */
 
-.app__resultado {
-    margin-top: 2rem;
-    padding: var(--espaciado-base);
-    background-color: #eef6fb;
-    border-radius: var(--radio-borde);
-    border: 1px solid var(--color-secundario);
+/* Lista vertical con scroll si hay muchos elementos */
+.form__lista {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;                  /* Separación entre items */
+    max-height: 200px;             /* Altura máxima para limitar tamaño */
+    overflow-y: auto;              /* Scroll vertical si hay más items */
+    padding-right: 0.5rem;         /* Espacio para que no se vea pegado al borde */
+    border: 1px solid #ddd;        /* Borde gris claro */
+    border-radius: var(--radio-borde); /* Bordes redondeados */
+    background-color: #fafafa;     /* Fondo ligeramente gris para diferenciar */
 }
 
+/* Cada item de la lista */
+.form__lista-item {
+    display: flex;                 /* Flex para acomodar inputs en línea */
+    flex-wrap: wrap;               /* Permite que se ajusten en varias líneas si es necesario */
+    gap: 0.5rem;                  /* Separación entre inputs dentro del item */
+    padding-bottom: 8px;           /* Espacio debajo para separar visualmente */
+    border-bottom: black 2px solid; /* Línea negra debajo para separar items */
+}
+
+/* Ajuste especial para el tercer input de cada item */
+/* Este input toma toda la línea para mejor legibilidad */
+.form__lista-item input:nth-child(3) {
+    flex-basis: 100%;              /* Ocupa todo el ancho disponible */
+}
+
+/* Botones */
+/* Botones generales del formulario */
+.form__boton {
+    background-color: var(--color-boton-fondo); /* Fondo azul definido en variables */
+    color: var(--color-boton-texto);             /* Texto blanco */
+    border: none;                                /* Sin borde */
+    padding: 0.6rem 1.5rem;                      /* Espaciado interno para tamaño cómodo */
+    font-size: 1rem;                             /* Tamaño de letra normal */
+    border-radius: var(--radio-borde);           /* Bordes redondeados suaves */
+    cursor: pointer;                             /* Cambia cursor para indicar que es clickeable */
+    align-self: flex-start;                      /* Alinea el botón al inicio del contenedor flex */
+    transition: background-color 0.3s ease;     /* Transición suave cuando cambia el color de fondo */
+}
+
+/* Efecto hover y foco para los botones */
+.form__boton:hover,
+.form__boton:focus {
+    background-color: #1c5980;                   /* Cambia a un azul más oscuro al pasar el mouse o foco */
+    outline: none;                               /* Quita el contorno azul del foco por defecto */
+}
+
+/* Botón principal, que suele ser el submit del formulario */
+.form__boton--principal {
+    align-self: center;                          /* Centra el botón dentro del contenedor flex */
+    font-weight: 700;                            /* Texto más grueso para destacar */
+    font-size: 1.1rem;                           /* Tamaño un poco más grande */
+    padding: 0.75rem 2rem;                       /* Más espacio interno para mejor apariencia */
+    margin-top: 1.5rem;                          /* Separación arriba para no pegarse al contenido anterior */
+}
+
+/* ----------------------------------- */
+/* Contenedor para mostrar resultados */
+
+/* Estilo para la sección donde se muestran los resultados de la app */
+.app__resultado {
+    margin-top: 2rem;                            /* Separación desde el contenido anterior */
+    padding: var(--espaciado-base);              /* Espacio interno */
+    background-color: #eef6fb;                   /* Fondo azul muy claro para diferenciar */
+    border-radius: var(--radio-borde);           /* Bordes redondeados */
+    border: 1px solid var(--color-secundario);  /* Borde azul para resaltar */
+}
+
+/* Contenido dentro del resultado */
 #resultado-contenido {
-    font-size: 1rem;
-    color: var(--color-principal);
-    white-space: pre-wrap;
-    /* para saltos de línea si los hay */
+    font-size: 1rem;                             /* Tamaño legible */
+    color: var(--color-principal);               /* Color azul oscuro para el texto */
+    white-space: pre-wrap;                       /* Mantiene saltos de línea y espacios en el texto */
+    /* Esto ayuda a que el texto se vea ordenado si tiene varias líneas */
 }
 
 /* ----------------------------------- */
 /* Responsive básico */
+/* Cambios para pantallas pequeñas (móviles) */
 
 @media (max-width: 480px) {
     .aplicacion {
-        margin: 1rem;
-        padding: 1rem;
+        margin: 1rem;                            /* Menos margen para que ocupe más espacio */
+        padding: 1rem;                           /* Padding reducido para pantallas chicas */
     }
 
     .mainMenu__h1 {
-        font-size: 2rem;
+        font-size: 2rem;                         /* Texto un poco más pequeño para que no se vea gigante */
     }
 
     .aplicacion__h2 {
-        font-size: 1.5rem;
+        font-size: 1.5rem;                       /* También reduce el tamaño del subtítulo */
     }
 }
